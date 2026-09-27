@@ -287,7 +287,7 @@ static tools_io::exec_result run_subprocess(
 
     res.exit_code = proc.join();
 
-    res.output    = console_output_to_utf8(output);
+    res.output    = combine_stderr ? console_output_to_utf8(output) : output;
     res.timed_out = timed_out.load();
     if (truncated) {
         res.output += "\n[output truncated]";
